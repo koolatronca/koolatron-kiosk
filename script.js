@@ -68,5 +68,3 @@ function getWeatherDescription(code) {
 }
 
 getWeather();
-  success.innerHTML = `✅ ${employee} has been notified. Please wait near reception.`;
-}
