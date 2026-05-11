@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Koolatron Visitor Kiosk</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="background">
+
+    <div class="card" id="welcomeScreen">
+
+      <h1>Welcome to Koolatron</h1>
+
+      <p id="date"></p>
+      <p id="time"></p>
+
+      <div class="infoBox">
+        <h3>Weather</h3>
+        <p>Brantford, ON • 18°C • Partly Cloudy</p>
+      </div>
+
+      <div class="infoBox">
+        <h3>Company Updates</h3>
+        <p>• Please check in before entering the office</p>
+        <p>• Featured products available in showroom</p>
+      </div>
+
+      <button onclick="showCheckIn()">
+        Start Check-In
+      </button>
+
+    </div>
+
+    <div class="card hidden" id="checkInScreen">
+
+      <h1>Visitor Check-In</h1>
+
+      <input
+        type="text"
+        id="visitorName"
+        placeholder="Visitor Name"
+      />
+
+      <select id="employeeSelect">
+
+        <option value="">
+          Select Employee
+        </option>
+
+        <option>Arun Kulkarni</option>
+        <option>Aakash Shah</option>
+        <option>Abhijit Desai</option>
+        <option>Andrew Tavernese</option>
+        <option>Christie Matschke</option>
+        <option>David Price</option>
+        <option>Dawn Karn</option>
+        <option>Debbie Ryerse</option>
+        <option>Enikő Tolnai</option>
+        <option>Hasan Mirza</option>
+        <option>Jill McKend</option>
+        <option>Joanne Roberts</option>
+        <option>Karyn Pickles</option>
+        <option>Kim Lem</option>
+        <option>Krunal Rana</option>
+        <option>Krupesh Shah</option>
+        <option>Lloyd Stenmark</option>
+        <option>Pankaj Bhatia</option>
+        <option>Pooja Kulkarni</option>
+        <option>Sanyukta Desai</option>
+        <option>Shalaka Kulkarni</option>
+        <option>Sneha Kulkarni</option>
+        <option>Sue Slater</option>
+        <option>Sul Arabi</option>
+        <option>Suman Bawa</option>
+        <option>Sydney De Souza</option>
+        <option>Tanya Raad</option>
+        <option>Teresa Chambers</option>
+
+      </select>
+
+      <button onclick="submitCheckIn()">
+        Notify Employee
+      </button>
+
+      <div
+        class="success hidden"
+        id="successMessage">
+      </div>
+
+      <button
+        class="secondary"
+        onclick="goBack()">
+        Back
+      </button>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
