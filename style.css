@@ -1,66 +1,119 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, #003B73, #0A6FB5);
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.background {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 20px;
 }
 
 .card {
   background: white;
-  width: 500px;
-  padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  width: 560px;
+  max-width: 92%;
+  padding: 34px;
+  border-radius: 28px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
 }
 
 h1 {
   color: #003B73;
+  font-size: 38px;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+h3 {
+  margin-top: 0;
+  color: #003B73;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 .infoBox {
   background: #f4f7fa;
-  padding: 15px;
-  border-radius: 15px;
-  margin-top: 15px;
+  padding: 22px;
+  border-radius: 18px;
+  margin-top: 18px;
 }
 
 input,
 select {
   width: 100%;
-  padding: 14px;
-  margin-top: 15px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+  display: block;
+  padding: 16px;
+  margin-top: 18px;
+  border-radius: 14px;
+  border: 1px solid #cfcfcf;
+  font-size: 18px;
+  background: white;
 }
 
 button {
   width: 100%;
-  padding: 15px;
-  margin-top: 20px;
+  padding: 17px;
+  margin-top: 22px;
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #0A6FB5;
   color: white;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
 }
 
+button:hover {
+  background: #085f9c;
+}
+
 .secondary {
-  background: #777;
+  background: #808080;
+}
+
+.secondary:hover {
+  background: #6f6f6f;
 }
 
 .success {
-  margin-top: 20px;
-  padding: 15px;
+  margin-top: 22px;
+  padding: 18px;
   background: #e8f5e9;
   color: #1B5E20;
-  border-radius: 14px;
+  border-radius: 16px;
+  font-size: 18px;
+  line-height: 1.4;
 }
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    padding: 26px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 16px;
+  }
 }
