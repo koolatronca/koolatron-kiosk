@@ -1,36 +1,40 @@
-async function submitCheckIn() {
-  const employee = document.getElementById("employeeSelect").value;
-  const visitor = document.getElementById("visitorName").value;
-
-  if (!visitor || !employee) {
-    alert("Please complete all fields.");
-    return;
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const success = document.getElementById("successMessage");
+  const { visitor, employee } = req.body;
 
-  success.classList.remove("hidden");
-  success.innerHTML = `Sending notification to ${employee}...`;
+  if (!visitor || !employee) {
+    return res.status(400).json({ error: "Missing visitor or employee" });
+  }
+
+  const teamsWebhookUrl = process.env.TEAMS_WEBHOOK_URL;
+
+  if (!teamsWebhookUrl) {
+    return res.status(500).json({ error: "Missing Teams webhook URL" });
+  }
+
+  const message = {
+    text: `🚨 Visitor Check-In\n\nVisitor: ${visitor}\nHere to see: ${employee}\n\nPlease respond when available.`
+  };
 
   try {
-    const response = await fetch("/api/notify", {
+    const response = await fetch(teamsWebhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        visitor: visitor,
-        employee: employee
-      })
+      body: JSON.stringify(message)
     });
 
     if (!response.ok) {
-      throw new Error("Teams notification failed");
+      return res.status(500).json({ error: "Failed to send Teams notification" });
     }
 
-    success.innerHTML = `✅ ${employee} has been notified. Please wait near reception.`;
+    return res.status(200).json({ success: true });
 
   } catch (error) {
-    success.innerHTML = `⚠️ There was a problem notifying ${employee}. Please speak with reception.`;
+    return res.status(500).json({ error: "Server error sending Teams notification" });
   }
 }
