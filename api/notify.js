@@ -11,12 +11,28 @@ export default async function handler(req, res) {
 
   const teamsWebhookUrl = process.env.TEAMS_WEBHOOK_URL;
 
-  if (!teamsWebhookUrl) {
-    return res.status(500).json({ error: "Missing Teams webhook URL" });
-  }
-
   const message = {
-    text: `🚨 Visitor Check-In\n\nVisitor: ${visitor}\nHere to see: ${employee}\n\nPlease respond when available.`
+    "@type": "MessageCard",
+    "@context": "https://schema.org/extensions",
+    "summary": "Visitor Check-In",
+    "themeColor": "0078D7",
+    "title": "Visitor Alert",
+    "sections": [
+      {
+        "activityTitle": "🚨 Visitor Check-In",
+        "facts": [
+          {
+            "name": "Visitor",
+            "value": visitor
+          },
+          {
+            "name": "Here to see",
+            "value": employee
+          }
+        ],
+        "text": "Please respond when available."
+      }
+    ]
   };
 
   try {
@@ -29,7 +45,7 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      return res.status(500).json({ error: "Failed to send Teams notification" });
+      return res.status(500).json({ error: "Teams rejected the request" });
     }
 
     return res.status(200).json({ success: true });
@@ -38,3 +54,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Server error sending Teams notification" });
   }
 }
+
