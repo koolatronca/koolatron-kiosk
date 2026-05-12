@@ -2,43 +2,81 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>Koolatron Visitor Kiosk</title>
 
   <link rel="stylesheet" href="style.css" />
+
 </head>
 
 <body>
 
   <div class="background">
 
-    <div class="card" id="welcomeScreen">
+    <!-- WELCOME SCREEN -->
+
+    <div
+      class="card"
+      id="welcomeScreen"
+    >
 
       <h1>Welcome to Koolatron</h1>
 
       <p id="date"></p>
+
       <p id="time"></p>
 
-      <div class="infoBox">
-        <h3>Weather</h3>
-        <p>Brantford, ON • 18°C • Partly Cloudy</p>
-      </div>
+      <!-- WEATHER -->
 
       <div class="infoBox">
+
+        <h3>Weather</h3>
+
+        <p id="weather">
+          Loading weather...
+        </p>
+
+      </div>
+
+      <!-- COMPANY UPDATES -->
+
+      <div class="infoBox">
+
         <h3>Company Updates</h3>
-        <p>• Please check in before entering the office</p>
-        <p>• Featured products available in showroom</p>
+
+        <p>
+          • Please check in before entering the office
+        </p>
+
+        <p>
+          • Featured products available in the showroom
+        </p>
+
       </div>
 
       <button onclick="showCheckIn()">
+
         Start Check-In
+
       </button>
 
     </div>
 
-    <div class="card hidden" id="checkInScreen">
+
+
+    <!-- CHECK IN SCREEN -->
+
+    <div
+      class="card hidden"
+      id="checkInScreen"
+    >
 
       <h1>Visitor Check-In</h1>
 
@@ -86,18 +124,24 @@
       </select>
 
       <button onclick="submitCheckIn()">
+
         Notify Employee
+
       </button>
 
       <div
         class="success hidden"
-        id="successMessage">
+        id="successMessage"
+      >
       </div>
 
       <button
         class="secondary"
-        onclick="goBack()">
+        onclick="goBack()"
+      >
+
         Back
+
       </button>
 
     </div>
@@ -107,4 +151,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
