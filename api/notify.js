@@ -12,25 +12,46 @@ export default async function handler(req, res) {
   const teamsWebhookUrl = process.env.TEAMS_WEBHOOK_URL;
 
   const message = {
-    "@type": "MessageCard",
-    "@context": "https://schema.org/extensions",
-    "summary": "Visitor Check-In",
-    "themeColor": "0078D7",
-    "title": "Visitor Alert",
-    "sections": [
+    type: "message",
+    attachments: [
       {
-        "activityTitle": "🚨 Visitor Check-In",
-        "facts": [
-          {
-            "name": "Visitor",
-            "value": visitor
-          },
-          {
-            "name": "Here to see",
-            "value": employee
-          }
-        ],
-        "text": "Please respond when available."
+        contentType: "application/vnd.microsoft.card.adaptive",
+        content: {
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          type: "AdaptiveCard",
+          version: "1.4",
+          body: [
+            {
+              type: "TextBlock",
+              text: "🚨 Visitor Alert",
+              weight: "Bolder",
+              size: "ExtraLarge",
+              wrap: true
+            },
+            {
+              type: "TextBlock",
+              text: `${visitor} is here to see`,
+              size: "Large",
+              wrap: true,
+              spacing: "Medium"
+            },
+            {
+              type: "TextBlock",
+              text: employee,
+              weight: "Bolder",
+              size: "ExtraLarge",
+              wrap: true,
+              color: "Accent"
+            },
+            {
+              type: "TextBlock",
+              text: "Please respond when available.",
+              isSubtle: true,
+              wrap: true,
+              spacing: "Medium"
+            }
+          ]
+        }
       }
     ]
   };
@@ -54,4 +75,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Server error sending Teams notification" });
   }
 }
-
